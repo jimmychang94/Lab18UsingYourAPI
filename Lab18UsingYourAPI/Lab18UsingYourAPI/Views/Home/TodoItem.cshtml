@@ -1,0 +1,32 @@
+﻿@model ListItemViewModel;
+
+
+
+<h2>Tasks To Do: </h2>
+@foreach (var item in Model.TodoItems)
+{
+    <ul>
+        <li>Task Name: @item.Name</li>
+        <ul>
+            @if (item.IsComplete)
+            {
+                <li>Task complete!</li>
+            }
+            else
+            {
+                <li>Task not complete</li>
+            }
+        </ul>
+
+        @foreach (var list in Model.TodoLists)
+        {
+            if (item.TodoListID == list.ID)
+            {
+                <li>Part of the list called: @list.Name</li>
+            }
+        }
+    </ul>
+}
+
+<p><a asp-action="TodoList">Click here to see the list of lists</a></p>
+<p><a asp-action="Index">Home</a></p>
